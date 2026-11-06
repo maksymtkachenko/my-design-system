@@ -1,3 +1,3 @@
-export { Button } from './Button.js';
-export type { ButtonProps } from './Button.js';
-export { PlusIcon } from './PlusIcon.js';
+export { Button } from './Button';
+export type { ButtonProps } from './Button';
+export { PlusIcon } from './PlusIcon';
