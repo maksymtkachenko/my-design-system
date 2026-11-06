@@ -18,7 +18,7 @@ All four user-provided Figma files have been inspected and registered in librari
 | [Web Button, 475:66](https://www.figma.com/design/fSby1O6rPTvFRZkdN6ie6I?node-id=475-66) | packages/react/src/Button.tsx | figma/web/Button.figma.ts |
 | [App Button, 578:113](https://www.figma.com/design/Gteyfh2uDgJ4phtbEIy85X?node-id=578-113) | packages/react-native/src/Button.tsx | figma/app/Button.figma.ts |
 
-Connection publication results are recorded in connections.json after verification. Foundations values are integrated through tokens; Code Connect is used for implemented components, not arbitrary whole-file links.
+Figma rejected publication of both connections because the libraries require an Organization or Enterprise plan. Templates parse successfully, but no live Code Connect mapping was created. Exact results are recorded in connections.json. Foundations values are integrated through tokens; Code Connect is used for implemented components, not arbitrary whole-file links.
 
 ## Provenance and verification
 

@@ -69,7 +69,9 @@ Both Buttons support `large` and `small` sizes, four variants, loading, disabled
 
 The approved Button connections have parserless `.figma.ts` templates in [figma/web](figma/web) and [figma/app](figma/app). Templates map all size, type, loading, text, and icon properties; nested icons are resolved dynamically. An icon without its own Code Connect template may not produce an icon snippet yet.
 
-`npm run figma:parse` validates the templates and produces ignored `figma/compiled.json`. Figma MCP is used to publish the initial connections. For later CLI publishing, provide a Figma token via the `FIGMA_ACCESS_TOKEN` environment variable and run:
+`npm run figma:parse` validates the templates and produces ignored `figma/compiled.json`. Initial publication was attempted through Figma MCP, but Figma rejected both mappings because these libraries require an Organization or Enterprise plan for Code Connect. The mappings are **not published**. Figma MCP can still read the libraries, and their source references remain usable in this repository.
+
+If Code Connect becomes available for the libraries, publish through Figma MCP or provide a Figma token via the `FIGMA_ACCESS_TOKEN` environment variable and run:
 
 ```sh
 npx figma connect publish --skip-update-check
@@ -86,3 +88,5 @@ Keep credentials out of Git. Publishing requires appropriate Figma library acces
 5. When package distribution is established, release a version and let consumer projects upgrade explicitly.
 
 There is no automatic two-way token sync. The initial tokens are verified values used by Button in the supplied libraries, not a complete Foundations export. Native geometry and theme coverage still need platform review.
+
+The initial npm audit reported seven findings in the Code Connect development-tool dependency chain (three high, four moderate), with no complete compatible fix reported for the current CLI. This is tracked as an upstream tooling limitation; these CLI dependencies are not shipped in the component packages.
