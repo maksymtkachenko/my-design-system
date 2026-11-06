@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "libraries": [
+    {
+      "library": "foundations",
+      "fileKey": "fOf8vjS4sNd9pxeha6gAGi",
+      "url": "https://www.figma.com/design/fOf8vjS4sNd9pxeha6gAGi",
+      "target": "packages/tokens",
+      "status": "registered; initial Button coverage only"
+    },
+    {
+      "library": "iconography",
+      "fileKey": "b9upztxn5UwuO2o2JsHmgV",
+      "url": "https://www.figma.com/design/b9upztxn5UwuO2o2JsHmgV",
+      "target": "packages/icons",
+      "status": "registered; initial Button coverage only"
+    },
+    {
+      "library": "app",
+      "fileKey": "Gteyfh2uDgJ4phtbEIy85X",
+      "url": "https://www.figma.com/design/Gteyfh2uDgJ4phtbEIy85X",
+      "target": "packages/react-native",
+      "status": "registered; initial Button coverage only"
+    },
+    {
+      "library": "web",
+      "fileKey": "fSby1O6rPTvFRZkdN6ie6I",
+      "url": "https://www.figma.com/design/fSby1O6rPTvFRZkdN6ie6I",
+      "target": "packages/react",
+      "status": "registered; initial Button coverage only"
+    }
+  ]
+}

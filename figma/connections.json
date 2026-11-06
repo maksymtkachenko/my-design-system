@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "connections": [
+    { "fileKey": "fSby1O6rPTvFRZkdN6ie6I", "nodeId": "475:66", "componentName": "Button", "label": "React", "platform": "web", "source": "https://github.com/maksymtkachenko/my-design-system/blob/main/packages/react/src/Button.tsx", "status": "prepared" },
+    { "fileKey": "Gteyfh2uDgJ4phtbEIy85X", "nodeId": "578:113", "componentName": "Button", "label": "React", "platform": "react-native", "source": "https://github.com/maksymtkachenko/my-design-system/blob/main/packages/react-native/src/Button.tsx", "status": "prepared" }
+  ]
+}

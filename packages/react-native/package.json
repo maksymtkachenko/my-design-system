@@ -1,0 +1,14 @@
+{
+  "name": "@mds/react-native",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": ["dist", "src"],
+  "react-native": "src/index.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "react-native": "./src/index.ts", "import": "./dist/index.js" }
+  },
+  "dependencies": { "@mds/tokens": "0.1.0", "@mds/icons": "0.1.0" },
+  "peerDependencies": { "react": "^19.3.0", "react-native": "^0.88.1", "react-native-svg": "^15.16.1" },
+  "devDependencies": { "react": "19.3.1", "react-native": "0.88.1", "react-native-svg": "15.16.1" }
+}

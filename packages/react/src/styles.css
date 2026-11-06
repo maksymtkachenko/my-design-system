@@ -1,0 +1,70 @@
+@import '@mds/tokens/styles.css';
+
+.mds-button {
+  --mds-button-bg: var(--mds-color-background-brand);
+  --mds-button-fg: var(--mds-color-content-primary-inverse);
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--mds-button-bg);
+  color: var(--mds-button-fg);
+  border: 0;
+  border-radius: var(--mds-radius-m);
+  padding: var(--mds-space-m);
+  font: var(--mds-text-l-weight) var(--mds-text-l-size) / var(--mds-text-l-line-height) var(--mds-font-web), sans-serif;
+  letter-spacing: var(--mds-text-l-letter-spacing);
+  cursor: pointer;
+}
+.mds-button[data-size='small'] {
+  padding: var(--mds-space-xs) var(--mds-space-s);
+  border-radius: var(--mds-radius-s);
+  font-size: var(--mds-text-m-size);
+  line-height: var(--mds-text-m-line-height);
+}
+.mds-button[data-variant='secondary'],
+.mds-button[data-variant='tertiary-mono'] {
+  --mds-button-bg: var(--mds-color-background-primary);
+  --mds-button-fg: var(--mds-color-content-secondary);
+}
+.mds-button[data-variant='secondary'] {
+  /* Figma's stroke is inside the shape, so it does not change layout. */
+  box-shadow: inset 0 0 0 1px var(--mds-color-border-secondary);
+}
+.mds-button[data-variant='tertiary'] {
+  --mds-button-bg: var(--mds-color-background-primary);
+  --mds-button-fg: var(--mds-color-content-link);
+}
+.mds-button:not(:disabled):hover {
+  --mds-button-bg: var(--mds-color-background-hover);
+  --mds-button-fg: var(--mds-color-content-primary);
+}
+.mds-button[data-variant='primary']:not(:disabled):hover {
+  --mds-button-bg: var(--mds-color-background-brand-hover);
+  --mds-button-fg: var(--mds-color-content-primary-inverse);
+}
+.mds-button[data-variant='tertiary']:not(:disabled):hover {
+  --mds-button-fg: var(--mds-color-content-link-hover);
+}
+.mds-button:not(:disabled):active {
+  --mds-button-bg: var(--mds-color-background-pressed);
+  --mds-button-fg: var(--mds-color-content-primary);
+}
+.mds-button[data-variant='primary']:not(:disabled):active {
+  --mds-button-bg: var(--mds-color-background-brand-pressed);
+  --mds-button-fg: var(--mds-color-content-primary-inverse);
+}
+.mds-button[data-variant='tertiary']:not(:disabled):active {
+  --mds-button-fg: var(--mds-color-content-link-pressed);
+}
+.mds-button:focus-visible { outline: 2px solid var(--mds-color-content-link); outline-offset: 3px; }
+.mds-button:disabled { cursor: not-allowed; }
+.mds-button:disabled:not([data-loading='true']) { opacity: 0.5; }
+.mds-button__content { display: flex; height: 24px; align-items: center; justify-content: center; }
+.mds-button__label { padding: 0 var(--mds-space-xs); white-space: nowrap; }
+.mds-button__icon { display: inline-flex; width: 24px; height: 24px; flex-shrink: 0; }
+.mds-button__spinner { display: block; animation: mds-spin 0.8s linear infinite; }
+@keyframes mds-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .mds-button__spinner { animation: none; } }
