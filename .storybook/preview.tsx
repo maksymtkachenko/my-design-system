@@ -6,8 +6,8 @@ const preview: Preview = {
   initialGlobals: { surface: 'black' },
   globalTypes: {
     surface: { description: 'Preview background', toolbar: { title: 'Background', icon: 'photo', dynamicTitle: true,
-      items: [{ value: 'black', title: 'Solid Black' }, { value: 'light', title: 'Solid light' },
-        { value: 'pattern', title: 'Still pattern' }, { value: 'moving', title: 'Moving pattern' }] } },
+      items: [{ value: 'black', title: 'Black' }, { value: 'white', title: 'White' },
+        { value: 'colorful', title: 'Colorful' }, { value: 'moving', title: 'Colorful (moving)' }] } },
   },
   parameters: {
     layout: 'fullscreen',
@@ -17,9 +17,9 @@ const preview: Preview = {
   },
   decorators: [(Story, context) => context.parameters.foundation ? <Story /> :
     <div className="testing-stage" role="region" aria-label="Component preview"
-      data-background={context.globals.surface === 'moving' ? 'pattern' : context.globals.surface}
+      data-background={['moving', 'colorful'].includes(context.globals.surface) ? 'pattern' : context.globals.surface}
       data-playing={context.globals.surface === 'moving'}>
-      {['pattern','moving'].includes(context.globals.surface) && <div className="testing-pattern" aria-hidden="true" />}
+      {['pattern','colorful','moving'].includes(context.globals.surface) && <div className="testing-pattern" aria-hidden="true" />}
       <div className="testing-target"><Story /></div>
     </div>],
 };

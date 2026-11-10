@@ -10,12 +10,12 @@ body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #222836; bac
   border-radius: 8px;
   background: #000;
 }
-.testing-stage[data-background='light'] { background: #e4e7ed; }
+.testing-stage[data-background='white'], .testing-stage[data-background='light'] { background: #fff; }
 .testing-pattern {
   position: absolute;
   inset: 0 -92px;
-  background: repeating-linear-gradient(135deg, #11172b 0 20px, #2944cc 20px 32px,
-    #23345f 32px 43px, #b8c6fa 43px 54px, #11172b 54px 64px);
+  background: repeating-linear-gradient(135deg, #ec4899 0 12px, #8b5cf6 12px 24px,
+    #2563eb 24px 36px, #06b6d4 36px 46px, #facc15 46px 56px, #f97316 56px 64px);
   animation: testing-drift 3s linear infinite paused;
 }
 .testing-stage[data-playing='true'] .testing-pattern { animation-play-state: running; }

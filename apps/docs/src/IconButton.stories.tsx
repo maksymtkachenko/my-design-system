@@ -9,7 +9,7 @@ const meta = {
   render: ({ iconId, ...args }, context) => {
     const icon = iconOptions.find(icon => icon.id === iconId)!;
     return <IconButton {...args} label={args.label === 'Cast' ? iconLabel(icon) : args.label}
-      icon={<PreviewIcon icon={icon} light={context.globals.surface === 'light'} />} />;
+      icon={<PreviewIcon icon={icon} light={['white', 'light'].includes(context.globals.surface)} />} />;
   },
   parameters: { docs: { description: { component: 'A 44 px icon action without background blur. Press: 100 ms; release: 150 ms. Give every action an accessible label.' } } },
 } satisfies Meta<React.ComponentProps<typeof IconButton> & { iconId: string }>;

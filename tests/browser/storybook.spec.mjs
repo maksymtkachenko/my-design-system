@@ -27,7 +27,7 @@ test('Storybook navigation, controls, docs and icon catalog are available', asyn
 });
 
 test('background contrast and moving pattern remain selectable per story', async ({ page }) => {
-  await page.goto('/iframe.html?id=components-icon-button--default&viewMode=story&globals=surface:light');
+  await page.goto('/iframe.html?id=components-icon-button--default&viewMode=story&globals=surface:white');
   const icon = page.locator('.mds-icon-button img');
   await expect(icon).toBeVisible();
   expect(decodeURIComponent(await icon.getAttribute('src'))).toContain('stroke="#000"');
@@ -35,6 +35,14 @@ test('background contrast and moving pattern remain selectable per story', async
   await expect(page.locator('.testing-pattern')).toHaveCSS('animation-play-state', 'running');
   await expect(icon).toBeVisible();
   expect(decodeURIComponent(await icon.getAttribute('src'))).toContain('stroke="#fff"');
-  await page.goto('/iframe.html?id=components-icon-button--default&viewMode=story&globals=surface:pattern');
+  await page.goto('/iframe.html?id=components-icon-button--default&viewMode=story&globals=surface:colorful');
   await expect(page.locator('.testing-pattern')).toHaveCSS('animation-play-state', 'paused');
+});
+
+ test('PlayPause circle blur can be adjusted over a colorful background', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-play-pause--default&viewMode=story&globals=surface:colorful');
+  await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(6px)');
+  await page.goto('/iframe.html?id=components-play-pause--default&viewMode=story&globals=surface:colorful&args=backgroundBlur:16');
+  await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(16px)');
+  await page.screenshot({path: 'test-results/colorful-blur.png'});
 });
