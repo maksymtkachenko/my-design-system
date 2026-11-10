@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { iconCatalog } from '../../packages/icons/dist/library.js';
 
 test('Icon Button uses distinct press and release timings and supports keyboard activation', async ({ page }) => {
   await page.goto('/#component-testing');
@@ -61,4 +62,17 @@ test('Component Testing can hold states and pause the background independently',
   await page.getByRole('navigation', { name: 'Components' }).getByRole('button', { name: 'Icon Button', exact: true }).click();
   await expect(stage.getByRole('button', { name: 'Cast', exact: true })).toBeEnabled();
   await expect(page.locator('pre')).toContainText('openDevicePicker');
+  const picker = page.getByRole('combobox', { name: 'Icon', exact: true });
+  await expect(picker.locator('option')).toHaveCount(iconCatalog.length);
+  await picker.selectOption('444-4237');
+  const cast = stage.getByRole('button', { name: 'Cast', exact: true }).locator('img');
+  await expect(cast).toHaveCSS('width', '16px');
+  const background = page.getByRole('combobox', { name: 'Background', exact: true });
+  await background.selectOption('black');
+  expect(decodeURIComponent(await cast.getAttribute('src'))).toContain('stroke="#fff"');
+  await background.selectOption('light');
+  expect(decodeURIComponent(await cast.getAttribute('src'))).toContain('stroke="#000"');
+  await page.getByRole('button', { name: 'Icons', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Search icons' }).fill('Cast');
+  await expect(page.getByText('3 matching icons', { exact: true })).toBeVisible();
 });

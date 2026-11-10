@@ -37,7 +37,7 @@ export function ComponentGuidelines({ component }: { component: 'button' | 'icon
           <p>Use Icon Button for familiar actions in compact spaces, such as Cast in a video player.</p>
           <ul>
             <li>Give each button an accessible action label such as “Cast” or “Add”.</li>
-            <li>Use a recognizable 24 px icon inside the 44 px touch target. Check icon contrast on still and moving backgrounds.</li>
+            <li>Use a recognizable icon inside the 44 px touch target. Start with 24 px and compare the authored sizes and contrast in the playground.</li>
             <li>Use <code>aria-pressed</code> for actions that toggle a persistent state. The pressed fill fades in over 100 ms and out over 150 ms.</li>
           </ul>
         </>

@@ -36,6 +36,24 @@ for (const filename of (await readdir('packages/icons/assets')).filter(n => n.en
 }
 await writeFile('packages/icons/dist/index.js', `export const assets = ${JSON.stringify(assets)};\n`);
 await writeFile('packages/icons/dist/index.d.ts', `export declare const assets: { ${Object.keys(assets).map(k => `${JSON.stringify(k)}: string`).join('; ')} };\n`);
+const iconInventory = JSON.parse(await readFile('figma/icon-inventory.json', 'utf8'));
+const iconCatalog = await Promise.all(iconInventory.components.map(async ({ nodeId, name, size }) => {
+  const id = nodeId.replace(':', '-');
+  const svg = await readFile(`packages/icons/library/${id}.svg`, 'utf8');
+  if (!svg.startsWith('<svg') || !svg.includes(`width="${size}" height="${size}"`)) {
+    throw new Error(`Invalid SVG dimensions for ${name} (${nodeId})`);
+  }
+  return { id, name, size, svg };
+}));
+await writeFile('packages/icons/dist/library.js', `export const iconCatalog = ${JSON.stringify(iconCatalog)};\n`);
+await writeFile('packages/icons/dist/library.d.ts', `export interface CatalogIcon {
+  readonly id: string;
+  readonly name: string;
+  readonly size: 16 | 24 | 32;
+  readonly svg: string;
+}
+export declare const iconCatalog: readonly CatalogIcon[];
+`);
 for (const platform of ['react', 'react-native']) {
   const result = spawnSync(process.execPath, ['node_modules/typescript/bin/tsc', '-p', `packages/${platform}/tsconfig.json`], { stdio: 'inherit' });
   if (result.status !== 0) process.exit(result.status ?? 1);

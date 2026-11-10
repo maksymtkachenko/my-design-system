@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, CastIcon, IconButton, PlusIcon } from '@mds/react';
+import { Button, IconButton } from '@mds/react';
+import { IconCatalog, iconLabel, iconOptions, PreviewIcon } from './IconCatalog';
 import { ComponentGuidelines, TokenReference } from './Reference';
 
 const states = [
@@ -15,16 +16,26 @@ const components = [
   { id: 'icon-button', label: 'Icon Button' },
 ] as const;
 
+const iconGroups = ([16, 24, 32] as const).map(size => ({
+  size,
+  icons: iconOptions.filter(icon => icon.size === size),
+}));
+
+const duplicateNames = new Set(iconOptions.filter((icon, index) =>
+  icon.name === iconOptions[index - 1]?.name,
+).map(icon => icon.name));
+
 export function ComponentTesting() {
   const [component, setComponent] = useState<(typeof components)[number]['id']>('icon-button');
-  const [showTokens, setShowTokens] = useState(false);
+  const [foundation, setFoundation] = useState<'tokens' | 'icons' | null>(null);
   const [state, setState] = useState('interactive');
   const [background, setBackground] = useState('black');
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState('normal');
-  const [icon, setIcon] = useState('cast');
+  const [iconId, setIconId] = useState('444-6376');
   const [activations, setActivations] = useState(0);
   const isIconButton = component === 'icon-button';
+  const icon = iconOptions.find(option => option.id === iconId)!;
   const activate = () => setActivations(count => count + 1);
 
   return (
@@ -36,8 +47,11 @@ export function ComponentTesting() {
         </header>
         <nav className="testing-foundations" aria-labelledby="testing-foundations-title">
           <h2 id="testing-foundations-title">Foundations</h2>
-          <button type="button" aria-pressed={showTokens} onClick={() => setShowTokens(true)}>
+          <button type="button" aria-pressed={foundation === 'tokens'} onClick={() => setFoundation('tokens')}>
             <span className="testing-component-icon" aria-hidden="true" /> Design tokens
+          </button>
+          <button type="button" aria-pressed={foundation === 'icons'} onClick={() => setFoundation('icons')}>
+            <span className="testing-component-icon" aria-hidden="true" /> Icons
           </button>
         </nav>
         <nav aria-labelledby="testing-components-title">
@@ -45,8 +59,8 @@ export function ComponentTesting() {
           <ul>
             {components.map(({ id, label }) => (
               <li key={id}>
-                <button type="button" aria-pressed={!showTokens && component === id} onClick={() => {
-                  setShowTokens(false);
+                <button type="button" aria-pressed={!foundation && component === id} onClick={() => {
+                  setFoundation(null);
                   if (component === id) return;
                   setComponent(id);
                   setState('interactive');
@@ -62,17 +76,17 @@ export function ComponentTesting() {
       </aside>
       <main className="testing-workspace">
         <header className="testing-toolbar">
-          <span className="testing-canvas-label">{showTokens ? 'Foundations' : 'Canvas'}</span>
-          <h1>{showTokens ? 'Design tokens' : isIconButton ? 'Icon Button' : 'Button'}</h1>
+          <span className="testing-canvas-label">{foundation ? 'Foundations' : 'Canvas'}</span>
+          <h1>{foundation === 'tokens' ? 'Design tokens' : foundation === 'icons' ? 'Icons' : isIconButton ? 'Icon Button' : 'Button'}</h1>
         </header>
-        {showTokens ? <TokenReference /> : <>
+        {foundation === 'tokens' ? <TokenReference /> : foundation === 'icons' ? <IconCatalog /> : <>
           <div className="testing-display">
             <div className="testing-stage" role="region" aria-label="Component preview"
               data-background={background} data-playing={playing} data-preview-state={state} data-speed={speed}>
               {background === 'pattern' && <div className="testing-pattern" aria-hidden="true" />}
               <div className="testing-target">
-                {isIconButton ? <IconButton label={icon === 'cast' ? 'Cast' : 'Add'}
-                  icon={icon === 'cast' ? <CastIcon /> : <PlusIcon />}
+                {isIconButton ? <IconButton label={iconLabel(icon)}
+                  icon={<PreviewIcon icon={icon} light={background === 'light'} />}
                   disabled={state === 'disabled'} onClick={activate} /> :
                   <Button label="Test action" disabled={state === 'disabled'} loading={state === 'loading'} onClick={activate} />}
               </div>
@@ -86,9 +100,14 @@ export function ComponentTesting() {
             <h2 id="testing-controls-title">Controls</h2>
             <div className="testing-controls">
               {isIconButton && <label>Icon
-                <select value={icon} onChange={event => setIcon(event.target.value)}>
-                  <option value="cast">Cast</option>
-                  <option value="plus">Plus</option>
+                <select value={iconId} onChange={event => setIconId(event.target.value)}>
+                  {iconGroups.map(group => (
+                    <optgroup key={group.size} label={`${group.size} px`}>
+                      {group.icons.map(option => <option key={option.id} value={option.id}>
+                        {iconLabel(option)}{duplicateNames.has(option.name) ? ` (${option.id})` : ''}
+                      </option>)}
+                    </optgroup>
+                  ))}
                 </select>
               </label>}
               <label>State

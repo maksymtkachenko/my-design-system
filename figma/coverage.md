@@ -7,7 +7,7 @@ All four user-provided Figma files have been inspected and registered in librari
 | Area | Initial coverage | Pending |
 | --- | --- | --- |
 | Foundations | Light-mode semantic colors, spacing, radii, and text styles used by Button | Full collection export, primitive/semantic alias graph, other text styles, layout, border system, and other modes |
-| Iconography | 868 components inventoried on the Icons page; Plus/24 exported with its original geometry | Remaining icon SVG exports and Code Connect templates; pictograms and illustrations |
+| Iconography | 870 original SVG exports from the Icons page, with 16, 24, and 32 px variants in the reference site and Icon Button picker | Code Connect templates; pictograms and illustrations |
 | Web | Button: both sizes, all four variants, default/hover/pressed/loading; platform focus and disabled behavior | Alert, Button Pill, Button Icon, Button Group, Button Group Pill, Checkbox, Help Text, Input, Radio, Row, standalone Spinner |
 | App | Button: both sizes, all four variants, default/pressed/loading; native press and disabled behavior | Alert, Button Pill, Button Icon, Button Group, Button Group Pill, Checkbox, Help Text, Input, Row, Radio, standalone Spinner, Sticky Button, System |
 

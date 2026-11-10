@@ -24,7 +24,7 @@ Open the local URL printed by Vite for the component playground. On CI, Playwrig
 | Package | Purpose |
 | --- | --- |
 | `@mds/tokens` | Approved token subset, generated JavaScript, TypeScript declarations, and CSS variables |
-| `@mds/icons` | Original SVG exports, including Plus/24 and Button spinner assets |
+| `@mds/icons` | Original SVG exports, with the full FDS icon catalog available at `@mds/icons/library` |
 | `@mds/react` | React web components and CSS |
 | `@mds/react-native` | React Native components using native interaction and SVG rendering |
 | `@mds/docs` | Design System Reference and component playground |

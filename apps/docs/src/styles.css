@@ -61,6 +61,7 @@ body { margin: 0; background: #fff; color: #222836; font-family: Inter, system-u
   padding: 16px 20px;
 }
 .testing-controls label { display: grid; gap: 5px; font-size: 13px; font-weight: 600; }
+.testing-controls select { min-width: 0; width: 100%; }
 .testing-controls select, .testing-motion {
   min-height: 38px;
   padding: 6px 10px;
@@ -92,6 +93,7 @@ body { margin: 0; background: #fff; color: #222836; font-family: Inter, system-u
   animation: testing-drift 3s linear infinite paused;
 }
 .testing-stage[data-playing='true'] .testing-pattern { animation-play-state: running; }
+.testing-stage[data-background='pattern'] .testing-preview-icon { filter: drop-shadow(0 0 1px #000); }
 /* One horizontal repeat of the 64px diagonal pattern. */
 @keyframes testing-drift { to { transform: translateX(90.51px); } }
 .testing-target { position: relative; display: grid; place-items: center; }
@@ -156,6 +158,30 @@ body { margin: 0; background: #fff; color: #222836; font-family: Inter, system-u
   background: conic-gradient(#434b5a 25%, #717b8e 0 50%, #434b5a 0 75%, #717b8e 0) 0 0 / 12px 12px;
 }
 .reference-swatch span { display: block; width: 100%; height: 100%; }
+.reference-icon-search { display: grid; gap: 6px; max-width: 360px; font-size: 13px; font-weight: 600; }
+.reference-icon-search input { padding: 8px 10px; border: 1px solid #d2d6e2; border-radius: 8px; font: inherit; }
+.reference-content .reference-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+.reference-icon-grid li {
+  display: grid;
+  grid-template-rows: 32px auto auto;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border: 1px solid #e0e5ed;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+.reference-content .reference-icon-grid li + li { margin-top: 0; }
+.reference-icon-grid small { font-size: 11px; }
+.reference-content .testing-motion { padding-inline: 14px; }
 @media (max-width: 650px) {
   .component-testing { grid-template-columns: 1fr; }
   .testing-sidebar { border-inline-end: 0; border-bottom: 1px solid #e0e5ed; }
