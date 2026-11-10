@@ -1,4 +1,6 @@
-# My Design System
+# Maksym UI
+
+[Design System Reference](https://maksymtkachenko.github.io/my-design-system/) includes live React examples, usage guidelines, and design tokens. GitHub Actions publishes the static site from `main` after verification passes.
 
 A personal design system with React for web, React Native for mobile, and shared tokens and original SVG assets. This repository is the implementation source of truth; the linked Figma libraries remain the design and review workspace.
 
@@ -25,7 +27,7 @@ Open the local URL printed by Vite for the component playground. On CI, Playwrig
 | `@mds/icons` | Original SVG exports, including Plus/24 and Button spinner assets |
 | `@mds/react` | React web components and CSS |
 | `@mds/react-native` | React Native components using native interaction and SVG rendering |
-| `@mds/docs` | Local component playground |
+| `@mds/docs` | Design System Reference and component playground |
 
 Each package is private and unpublished. These names currently resolve inside this workspace; they cannot yet be installed from npm in an independent project. Publishing versioned packages to a chosen registry is a separate distribution step. No npm or GitHub Packages credentials are stored here.
 

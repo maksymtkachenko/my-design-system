@@ -68,3 +68,34 @@
 .mds-button__spinner { display: block; animation: mds-spin 0.8s linear infinite; }
 @keyframes mds-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .mds-button__spinner { animation: none; } }
+
+.mds-icon-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 10px;
+  appearance: none;
+  border: 0;
+  border-radius: 74px;
+  overflow: hidden;
+  background-color: var(--mds-icon-button-fill, transparent);
+  color: var(--mds-color-content-primary-inverse);
+  cursor: pointer;
+  transition: background-color var(--mds-icon-button-duration, 150ms) ease-out;
+}
+.mds-icon-button:enabled:active {
+  --mds-icon-button-fill: var(--mds-color-background-overlay-pressed);
+  transition-duration: var(--mds-icon-button-duration, 100ms);
+}
+.mds-icon-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--mds-color-content-primary);
+}
+.mds-icon-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.mds-icon-button__icon { display: inline-flex; flex: 0 0 24px; align-items: center; justify-content: center; }
+@media (prefers-reduced-motion: reduce) { .mds-icon-button { transition: none; } }
