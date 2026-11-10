@@ -6,9 +6,20 @@
     "jsx": "react-jsx",
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ES2022", "DOM"],
-    "types": ["react", "react-dom"],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "types": [
+      "react",
+      "react-dom"
+    ],
     "noEmit": true
   },
-  "include": ["packages/react/src", "packages/react-native/src", "apps/docs/src"]
+  "include": [
+    "packages/react/src",
+    "packages/react-native/src",
+    "apps/docs/src",
+    ".storybook"
+  ]
 }

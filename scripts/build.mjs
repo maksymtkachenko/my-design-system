@@ -59,5 +59,3 @@ for (const platform of ['react', 'react-native']) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 await copyFile('packages/react/src/styles.css', 'packages/react/dist/styles.css');
-const vite = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build', 'apps/docs'], { stdio: 'inherit' });
-if (vite.status !== 0) process.exit(vite.status ?? 1);

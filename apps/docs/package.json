@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build"
+    "dev": "npm run storybook --prefix ../..",
+    "build": "npm run build --prefix ../.."
   },
   "dependencies": {
     "@fontsource/inter": "5.3.0",

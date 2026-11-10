@@ -20,7 +20,7 @@ jobs:
       - run: npm run figma:parse
       - run: npx playwright install --with-deps chrome
       - run: npm run test:browser
-      - name: Upload reference site
+      - name: Upload static Storybook
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
@@ -36,6 +36,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy reference site
+      - name: Deploy Storybook reference site
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5

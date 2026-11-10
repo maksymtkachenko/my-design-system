@@ -17,7 +17,7 @@ npm run test:browser
 npm run dev
 ```
 
-Open the local URL printed by Vite for the component playground. On CI, Playwright installs Chrome before the browser test.
+Open http://127.0.0.1:6006 for Storybook. `npm run dev` (or `npm run storybook`) builds the workspace packages and starts Storybook. `npm run build` generates packages and the static Storybook in `apps/docs/dist`. On CI, Playwright installs Chrome before the browser test.
 
 ## Packages
 
@@ -27,7 +27,7 @@ Open the local URL printed by Vite for the component playground. On CI, Playwrig
 | `@mds/icons` | Original SVG exports, with the full FDS icon catalog available at `@mds/icons/library` |
 | `@mds/react` | React web components and CSS |
 | `@mds/react-native` | React Native components using native interaction and SVG rendering |
-| `@mds/docs` | Design System Reference and component playground |
+| `@mds/docs` | Storybook stories, usage guidelines, tokens, and icon catalog |
 
 Each package is private and unpublished. These names currently resolve inside this workspace; they cannot yet be installed from npm in an independent project. Publishing versioned packages to a chosen registry is a separate distribution step. No npm or GitHub Packages credentials are stored here.
 
@@ -92,3 +92,9 @@ Keep credentials out of Git. Publishing requires appropriate Figma library acces
 There is no automatic two-way token sync. The initial tokens are verified values used by Button in the supplied libraries, not a complete Foundations export. Native geometry and theme coverage still need platform review.
 
 The initial npm audit reported seven findings in the Code Connect development-tool dependency chain (three high, four moderate), with no complete compatible fix reported for the current CLI. This is tracked as an upstream tooling limitation; these CLI dependencies are not shipped in the component packages.
+
+## Storybook reference site
+
+Storybook configuration lives in `.storybook`; component stories live alongside the reference content in `apps/docs/src`. Use Controls for component props, Actions to observe callbacks, and the Background toolbar for solid black (default), light, still pattern, or moving pattern. Each component has usage guidelines and generated documentation with source examples. Foundations contains shared tokens and the searchable icon catalog.
+
+GitHub Actions verifies the static Storybook and publishes `apps/docs/dist` to the existing GitHub Pages URL. No Storybook or Chromatic account is required.
