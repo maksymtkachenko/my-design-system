@@ -4,3 +4,6 @@ export { PlusIcon } from './PlusIcon.js';
 export { CastIcon } from './CastIcon.js';
 export { IconButton } from './components/IconButton.js';
 export type { IconButtonProps } from './components/IconButton.js';
+
+export { PlayPause } from './components/PlayPause.js';
+export type { PlayPauseProps } from './components/PlayPause.js';

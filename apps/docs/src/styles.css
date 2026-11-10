@@ -189,3 +189,5 @@ body { margin: 0; background: #fff; color: #222836; font-family: Inter, system-u
   .testing-sidebar ul { display: flex; flex-wrap: wrap; }
   .testing-stage { min-height: 240px; }
 }
+
+.testing-stage[data-preview-state='focus'] .mds-play-pause { outline: 2px solid var(--mds-color-content-link); outline-offset: 3px; }

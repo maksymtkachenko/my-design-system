@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IconButton } from '@mds/react';
+import { Button, IconButton, PlayPause } from '@mds/react';
 import { IconCatalog, iconLabel, iconOptions, PreviewIcon } from './IconCatalog';
 import { ComponentGuidelines, TokenReference } from './Reference';
 
@@ -14,6 +14,7 @@ const states = [
 const components = [
   { id: 'button', label: 'Button' },
   { id: 'icon-button', label: 'Icon Button' },
+  { id: 'play-pause', label: 'Play / Pause' },
 ] as const;
 
 const iconGroups = ([16, 24, 32] as const).map(size => ({
@@ -33,6 +34,8 @@ export function ComponentTesting() {
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState('normal');
   const [iconId, setIconId] = useState('444-6376');
+  const [mediaPlaying, setMediaPlaying] = useState(false);
+  const [playbackSize, setPlaybackSize] = useState<'x-small' | 'small' | 'large'>('small');
   const [activations, setActivations] = useState(0);
   const isIconButton = component === 'icon-button';
   const icon = iconOptions.find(option => option.id === iconId)!;
@@ -77,7 +80,7 @@ export function ComponentTesting() {
       <main className="testing-workspace">
         <header className="testing-toolbar">
           <span className="testing-canvas-label">{foundation ? 'Foundations' : 'Canvas'}</span>
-          <h1>{foundation === 'tokens' ? 'Design tokens' : foundation === 'icons' ? 'Icons' : isIconButton ? 'Icon Button' : 'Button'}</h1>
+          <h1>{foundation === 'tokens' ? 'Design tokens' : foundation === 'icons' ? 'Icons' : components.find(item => item.id === component)?.label}</h1>
         </header>
         {foundation === 'tokens' ? <TokenReference /> : foundation === 'icons' ? <IconCatalog /> : <>
           <div className="testing-display">
@@ -85,7 +88,7 @@ export function ComponentTesting() {
               data-background={background} data-playing={playing} data-preview-state={state} data-speed={speed}>
               {background === 'pattern' && <div className="testing-pattern" aria-hidden="true" />}
               <div className="testing-target">
-                {isIconButton ? <IconButton label={iconLabel(icon)}
+                {component === 'play-pause' ? <PlayPause playing={mediaPlaying} size={playbackSize} disabled={state === 'disabled'} onPlayingChange={value => { setMediaPlaying(value); activate(); }} /> : isIconButton ? <IconButton label={iconLabel(icon)}
                   icon={<PreviewIcon icon={icon} light={background === 'light'} />}
                   disabled={state === 'disabled'} onClick={activate} /> :
                   <Button label="Test action" disabled={state === 'disabled'} loading={state === 'loading'} onClick={activate} />}
@@ -110,10 +113,18 @@ export function ComponentTesting() {
                   ))}
                 </select>
               </label>}
+              {component === 'play-pause' && <>
+                <label>Size<select value={playbackSize} onChange={event => setPlaybackSize(event.target.value as typeof playbackSize)}>
+                  <option value="x-small">XSmall · 32 px</option><option value="small">Small · 52 px</option><option value="large">Large · 84 px</option>
+                </select></label>
+                <label>Playback<select value={mediaPlaying ? 'playing' : 'paused'} onChange={event => setMediaPlaying(event.target.value === 'playing')}>
+                  <option value="paused">Paused · show Play</option><option value="playing">Playing · show Pause</option>
+                </select></label>
+              </>}
               <label>State
                 <select value={state} onChange={event => setState(event.target.value)}>
-                  {states.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-                  {!isIconButton && <option value="loading">Loading</option>}
+                  {states.filter(([value]) => component !== 'play-pause' || value !== 'pressed').map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                  {component === 'button' && <option value="loading">Loading</option>}
                 </select>
               </label>
               <label>Background

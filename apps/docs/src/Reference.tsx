@@ -27,12 +27,18 @@ export function CastButton({ openDevicePicker }: { openDevicePicker: () => void 
   );
 }`;
 
-export function ComponentGuidelines({ component }: { component: 'button' | 'icon-button' }) {
+export function ComponentGuidelines({ component }: { component: 'button' | 'icon-button' | 'play-pause' }) {
   const isIconButton = component === 'icon-button';
   return (
     <section className="reference-content" aria-labelledby="reference-usage">
       <h2 id="reference-usage">Usage guidelines</h2>
-      {isIconButton ? (
+      {component === 'play-pause' ? <>
+        <p>Use Play / Pause to control media playback. The icon and accessible label describe the next action.</p>
+        <ul><li>Bind playing to actual media state; onPlayingChange requests a playback change.</li>
+        <li>Sizes: XSmall 32 px, Small 52 px, Large 84 px. Allow enough surrounding touch space for the compact size.</li>
+        <li>The 200 ms scale-and-crossfade reverses smoothly on rapid toggles. Reduced motion switches immediately.</li>
+        <li>Preserves the Figma translucent background and 6 px blur. Icon Button remains unblurred.</li></ul>
+      </> : isIconButton ? (
         <>
           <p>Use Icon Button for familiar actions in compact spaces, such as Cast in a video player.</p>
           <ul>
@@ -53,7 +59,14 @@ export function ComponentGuidelines({ component }: { component: 'button' | 'icon
       )}
       <h2>React example</h2>
       <p>Import the component and shared stylesheet in a project that has access to the workspace package.</p>
-      <pre><code>{isIconButton ? iconButtonExample : buttonExample}</code></pre>
+      <pre><code>{component === 'play-pause' ? `import { useState } from 'react';
+import { PlayPause } from '@mds/react';
+import '@mds/react/styles.css';
+
+export function PlaybackControl() {
+  const [playing, setPlaying] = useState(false);
+  return <PlayPause playing={playing} onPlayingChange={setPlaying} size="small" />;
+}` : isIconButton ? iconButtonExample : buttonExample}</code></pre>
     </section>
   );
 }

@@ -28,3 +28,7 @@ Figma rejected publication of both connections because the libraries require an 
 - Web checks cover default geometry (84 x 48 within font rounding), small height 32, background states, focus, keyboard activation, loading semantics, and successful SVG rendering.
 - React Native is type-checked. Device rendering, touch target review, screen reader testing, and Android typography comparison remain pending.
 - Initial packages have only the inspected light-mode values. Do not advertise dark mode or full library migration.
+
+## Playback control
+
+React PlayPause implements App component 6526:510 with all three sizes and six original SVG assets. Motion from 6529:65 uses the 200 ms timeline once per toggle, reversing for Pause to Play. Reduced motion snaps to the endpoint. No new Code Connect publication or React Native implementation is claimed.
