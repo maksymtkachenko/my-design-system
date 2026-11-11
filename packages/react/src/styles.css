@@ -121,3 +121,23 @@
 .mds-play-pause[data-playing="true"] .mds-play-pause__play .mds-play-pause__motion { opacity: 0; }
 .mds-play-pause:focus-visible { outline: 2px solid var(--mds-color-content-link); outline-offset: 3px; }
 .mds-play-pause:disabled { opacity: .4; cursor: default; }
+
+.mds-rewind {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  overflow: hidden;
+  background: var(--mds-color-background-playback);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  touch-action: manipulation;
+  cursor: pointer;
+}
+.mds-rewind[data-size="large"] { width: 54px; height: 54px; }
+.mds-rewind img { display: block; }
+.mds-rewind:focus-visible { outline: 2px solid var(--mds-color-content-link); outline-offset: 3px; }
+.mds-rewind:disabled { opacity: .4; cursor: default; }

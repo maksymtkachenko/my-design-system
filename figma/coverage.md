@@ -38,3 +38,7 @@ React PlayPause implements App component 6526:510 with all three sizes and six o
 `figma/app/PlayPause.figma.ts` maps App library component 6526:510 to the implemented React `PlayPause`. All exposed Figma properties are covered: Size (XSmall, Small, Large) and State (Play, Pause). The snippet initializes media state and supplies the required update callback. The template parses and type-checks successfully.
 
 Figma rejected publication because this library requires an Organization or Enterprise plan. This template is prepared, but no live mapping exists. Code Connect maps component properties to usage examples; it does not continuously synchronize styling, tokens, SVG assets, or animation from Figma into source files. Those implementation values must be updated explicitly from inspected design and motion context.
+
+## Rewind
+
+React Rewind implements App component 6528:555 in both sizes and directions with the four original SVG assets. Each activation plays one 400 ms cycle from 6529:43. The backward variant mirrors the authored clockwise rotation. Reduced motion skips the animation.

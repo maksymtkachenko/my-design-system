@@ -7,3 +7,6 @@ export type { IconButtonProps } from './components/IconButton.js';
 
 export { PlayPause } from './components/PlayPause.js';
 export type { PlayPauseProps } from './components/PlayPause.js';
+
+export { Rewind } from './components/Rewind.js';
+export type { RewindProps } from './components/Rewind.js';
