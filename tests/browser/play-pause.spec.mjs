@@ -58,14 +58,15 @@ test('PlayPause stays still on mount and both directions share a continuous play
   await expect(button.locator('.mds-play-pause__pause .mds-play-pause__motion')).toHaveCSS('opacity', '1');
   await button.click();
   await expect(button.locator('.mds-play-pause__play .mds-play-pause__motion')).toHaveCSS('opacity', '1');
-  // Freeze the outgoing timeline mid-transition and reverse via the real control.
+  // Wait for Storybook's controlled args to commit before freezing the timeline.
   await button.click();
+  await expect(button).toHaveAccessibleName('Pause');
   await button.evaluate(element => element.getAnimations({ subtree: true }).forEach(animation => { animation.pause(); animation.currentTime = 100; }));
   const before = await button.locator('.mds-play-pause__play .mds-play-pause__motion').evaluate(element => getComputedStyle(element).opacity);
   await button.evaluate(element => element.click());
   await expect(button).toHaveAccessibleName('Play');
+  await expect.poll(async () => (await read()).every(track => track.rate === -1 && track.time <= 100)).toBe(true);
   const tracks = await read();
-  expect(tracks.every(track => track.rate === -1 && track.time <= 100)).toBe(true);
   expect(Math.max(...tracks.map(track => track.time)) - Math.min(...tracks.map(track => track.time))).toBeLessThan(2);
   await expect(button.locator('.mds-play-pause__play .mds-play-pause__motion')).toHaveCSS('opacity', '1');
   expect(Number(before)).toBeGreaterThan(0);
