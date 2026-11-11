@@ -101,3 +101,6 @@ body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #222836; bac
 .reference-content .testing-motion { padding-inline: 14px; }
 
 @media (prefers-reduced-motion: reduce) { .testing-pattern { animation: none; } }
+
+.preview-background-control { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #fff; color: #222836; font: 600 13px Inter, system-ui, sans-serif; border-bottom: 1px solid #e0e5ed; }
+.preview-background-control select { padding: 7px 12px; border: 1px solid #d2d6e2; border-radius: 6px; color: #222836; background: #fff; font: inherit; }

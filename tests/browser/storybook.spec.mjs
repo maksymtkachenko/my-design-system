@@ -46,3 +46,16 @@ test('background contrast and moving pattern remain selectable per story', async
   await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(16px)');
   await page.screenshot({path: 'test-results/colorful-blur.png'});
 });
+
+test('visible background selector works in component stories and Docs', async ({ page }) => {
+  await page.goto('/?path=/docs/components-play-pause--docs');
+  const frame = page.frameLocator('#storybook-preview-iframe');
+  const picker = frame.getByRole('combobox', { name: 'Preview background', exact: true }).first();
+  await expect(picker).toBeVisible();
+  await expect(frame.locator('.mds-play-pause').first()).toBeVisible();
+  await picker.selectOption('white');
+  await expect(frame.locator('.testing-stage').first()).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await picker.selectOption('colorful');
+  await expect(frame.locator('.testing-pattern').first()).toBeVisible();
+  await page.screenshot({ path: 'test-results/visible-background-selector.png' });
+});
