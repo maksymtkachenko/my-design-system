@@ -32,3 +32,9 @@ Figma rejected publication of both connections because the libraries require an 
 ## Playback control
 
 React PlayPause implements App component 6526:510 with all three sizes and six original SVG assets. Motion from 6529:65 uses the 200 ms timeline once per toggle, reversing for Pause to Play. Reduced motion snaps to the endpoint. No new Code Connect publication or React Native implementation is claimed.
+
+## Play/Pause Code Connect
+
+`figma/app/PlayPause.figma.ts` maps App library component 6526:510 to the implemented React `PlayPause`. All exposed Figma properties are covered: Size (XSmall, Small, Large) and State (Play, Pause). The snippet initializes media state and supplies the required update callback. The template parses and type-checks successfully.
+
+Figma rejected publication because this library requires an Organization or Enterprise plan. This template is prepared, but no live mapping exists. Code Connect maps component properties to usage examples; it does not continuously synchronize styling, tokens, SVG assets, or animation from Figma into source files. Those implementation values must be updated explicitly from inspected design and motion context.
