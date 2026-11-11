@@ -1,4 +1,4 @@
-# Maksym UI
+# Maksym Design System
 
 [Design System Reference](https://maksymtkachenko.github.io/my-design-system/) includes live React examples, usage guidelines, and design tokens. GitHub Actions publishes the static site from `main` after verification passes.
 
