@@ -104,8 +104,8 @@
   position: relative; width: 32px; height: 32px; padding: 0; border: 0;
   border-radius: 99px; overflow: hidden; cursor: pointer;
   background: var(--mds-color-background-playback);
-  -webkit-backdrop-filter: blur(var(--mds-playback-blur, 6px));
-  backdrop-filter: blur(var(--mds-playback-blur, 6px)); touch-action: manipulation;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px); touch-action: manipulation;
 }
 .mds-play-pause[data-size="small"] { width: 52px; height: 52px; }
 .mds-play-pause[data-size="large"] { width: 84px; height: 84px; }

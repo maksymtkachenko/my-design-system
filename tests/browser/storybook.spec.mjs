@@ -39,11 +39,13 @@ test('background contrast and moving pattern remain selectable per story', async
   await expect(page.locator('.testing-pattern')).toHaveCSS('animation-play-state', 'paused');
 });
 
- test('PlayPause circle blur can be adjusted over a colorful background', async ({ page }) => {
+ test('PlayPause uses Figma background blur across sizes and states', async ({ page }) => {
   await page.goto('/iframe.html?id=components-play-pause--default&viewMode=story&globals=surface:colorful');
   await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(6px)');
-  await page.goto('/iframe.html?id=components-play-pause--default&viewMode=story&globals=surface:colorful&args=backgroundBlur:16');
-  await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(16px)');
+  for (const story of ['playing', 'x-small', 'large', 'disabled']) {
+    await page.goto(`/iframe.html?id=components-play-pause--${story}&viewMode=story&globals=surface:colorful`);
+    await expect(page.locator('.mds-play-pause')).toHaveCSS('backdrop-filter', 'blur(6px)');
+  }
   await page.screenshot({path: 'test-results/colorful-blur.png'});
 });
 

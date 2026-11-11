@@ -95,6 +95,6 @@ The initial npm audit reported seven findings in the Code Connect development-to
 
 ## Storybook reference site
 
-Storybook configuration lives in `.storybook`; component stories live alongside the reference content in `apps/docs/src`. Use Controls for component props, Actions to observe callbacks, and the Background toolbar for Black (default), White, Colorful, or Colorful (moving). Play/Pause also has a Background blur control (6 px by default). Each component has usage guidelines and generated documentation with source examples. Foundations contains shared tokens and the searchable icon catalog.
+Storybook configuration lives in `.storybook`; component stories live alongside the reference content in `apps/docs/src`. Use Controls for component props, Actions to observe callbacks, and the Background toolbar for Black (default), White, Colorful, or Colorful (moving). Play/Pause uses the Figma-authored 6 px background blur across all sizes and states. Each component has usage guidelines and generated documentation with source examples. Foundations contains shared tokens and the searchable icon catalog.
 
 GitHub Actions verifies the static Storybook and publishes `apps/docs/dist` to the existing GitHub Pages URL. No Storybook or Chromatic account is required.
