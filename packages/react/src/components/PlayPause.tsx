@@ -41,10 +41,19 @@ export function PlayPause({ playing, onPlayingChange, size = 'x-small', classNam
   }, []);
   useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => timeline.current.forEach(animation => {
-      if (media.matches) { animation.pause(); animation.currentTime = playing ? 200 : 0; }
-      else { animation.playbackRate = playing ? 1 : -1; animation.play(); }
-    });
+    const update = () => {
+      const animations = timeline.current;
+      const target = playing ? 200 : 0;
+      // Keep all tracks on one playhead. play() automatically rewinds animations
+      // at a boundary, so never play a timeline already at its target endpoint.
+      const current = Math.max(0, Math.min(200, Number(animations[0]?.currentTime ?? target)));
+      animations.forEach(animation => {
+        animation.pause();
+        animation.playbackRate = playing ? 1 : -1;
+        animation.currentTime = media.matches ? target : current;
+      });
+      if (!media.matches && current !== target) animations.forEach(animation => animation.play());
+    };
     update();
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
